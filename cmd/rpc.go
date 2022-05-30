@@ -2,15 +2,14 @@ package main
 
 import (
 	"context"
-	"errors"
+	"demo/conf"
+	"demo/internal/delivery"
+	"demo/internal/domain"
 	"flag"
 	"log"
 	"os"
 	"os/signal"
 	"syscall"
-	"{{.projectName}}/conf"
-	"{{.projectName}}/internal/delivery"
-	"{{.projectName}}/internal/domain"
 )
 
 func main() {
@@ -30,13 +29,12 @@ func main() {
 	sc := domain.NewServiceContext(c)
 	s := delivery.NewRpcServer(sc)
 	svcImpl := delivery.RpcService(sc)
-	if svcImpl == nil {
-		log.Fatal(errors.New("invalid svc implement"))
-	}
 
 	// 注册服务实现
-	if err := s.Register(svcImpl); err != nil {
-		log.Fatal(err.Error())
+	for i := range svcImpl {
+		if err := s.Register(svcImpl[i]); err != nil {
+			log.Fatal(err.Error())
+		}
 	}
 
 	ctx, cancel := context.WithCancel(context.Background())
@@ -45,7 +43,7 @@ func main() {
 		cancel()
 	}()
 
-	s.RunWithGateway(ctx)
+	s.Run(ctx)
 
 	sc.Close()
 }

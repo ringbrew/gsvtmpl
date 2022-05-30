@@ -1,9 +1,6 @@
 package conf
 
 import (
-	"log"
-	"net"
-	"strconv"
 	"github.com/ringbrew/gsvcore/config"
 )
 
@@ -43,24 +40,10 @@ type Trace struct {
 
 func Load(path string) (Config, error) {
 	var result Config
-	//todo
+	loader := config.NewLoader(config.LoaderTypeYml, path)
+	if err := loader.Load(&result); err != nil {
+		return Config{}, err
+	}
 
 	return result, nil
-}
-
-func GetOutboundIP() net.IP {
-	conn, err := net.Dial("udp", "8.8.8.8:80")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer conn.Close()
-
-	localAddr := conn.LocalAddr().(*net.UDPAddr)
-
-	return localAddr.IP
-}
-
-func shouldInt(val string) int {
-	result, _ := strconv.Atoi(val)
-	return result
 }
