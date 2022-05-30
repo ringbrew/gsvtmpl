@@ -2,10 +2,11 @@ package example
 
 import (
 	"context"
+	"{{.projectName}}/internal/domain"
 )
 
 type repo struct {
-	ctx  *domain.ServiceContext
+	ctx *domain.ServiceContext
 }
 
 func newRepo(ctx *domain.ServiceContext) *repo {

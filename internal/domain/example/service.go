@@ -7,6 +7,7 @@ import (
 
 type Service struct {
 	ctx  *domain.ServiceContext
+	repo *repo
 }
 
 type QueryParam struct {
@@ -54,7 +55,7 @@ func (s *Service) Get(ctx context.Context, name string) (Example, error) {
 func (s *Service) Query(ctx context.Context, param QueryParam) ([]Example, int64, error) {
 	result, total, err := s.repo.Query(ctx, param)
 	if err != nil {
-		return nil, 0, errbiz.New(ErrSearch, err)
+		return nil, 0, err
 	}
 
 	return result, total, nil
