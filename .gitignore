@@ -1,0 +1,9 @@
+.idea
+*.zip
+.DS_Store
+*.txt
+!tables
+.*.swp
+.*.swo
+*.log
+config.yaml
