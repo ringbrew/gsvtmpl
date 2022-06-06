@@ -1,7 +1,7 @@
 package conf
 
 import (
-	"github.com/ringbrew/gsvcore/config"
+	"github.com/ringbrew/gsv/config"
 )
 
 type Config struct {
