@@ -1,7 +1,7 @@
 package delivery
 
 import (
-	"demo/internal/domain"
+	"{{$.projectName}}/internal/domain"
 	"github.com/ringbrew/gsv/server"
 	"github.com/ringbrew/gsv/service"
 )

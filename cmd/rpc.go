@@ -2,9 +2,9 @@ package main
 
 import (
 	"context"
-	"demo/conf"
-	"demo/internal/delivery"
-	"demo/internal/domain"
+	"{{$.projectName}}/conf"
+	"{{$.projectName}}/internal/delivery"
+	"{{$.projectName}}/internal/domain"
 	"flag"
 	"log"
 	"os"
