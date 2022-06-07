@@ -21,6 +21,6 @@ func NewRpcServer(ctx *domain.UseCaseContext) server.Server {
 	return server.NewServer(server.GRPC, &opt)
 }
 
-func RpcService(ctx *domain.UseCaseContext) []service.Service {
+func ServiceList(ctx *domain.UseCaseContext) []service.Service {
 	return nil
 }

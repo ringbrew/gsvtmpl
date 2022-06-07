@@ -28,7 +28,7 @@ func main() {
 	// 初始化server
 	ucc := domain.NewUseCaseContext(c)
 	s := delivery.NewRpcServer(ucc)
-	svcImpl := delivery.RpcService(ucc)
+	svcImpl := delivery.ServiceList(ucc)
 
 	// 注册服务实现
 	for i := range svcImpl {
