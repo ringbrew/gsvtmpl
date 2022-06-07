@@ -6,7 +6,7 @@ import (
 	"github.com/ringbrew/gsv/service"
 )
 
-func NewRpcServer(ctx *domain.ServiceContext) server.Server {
+func NewRpcServer(ctx *domain.UseCaseContext) server.Server {
 	opt := server.Classic()
 
 	// set the server port
@@ -21,6 +21,6 @@ func NewRpcServer(ctx *domain.ServiceContext) server.Server {
 	return server.NewServer(server.GRPC, &opt)
 }
 
-func RpcService(ctx *domain.ServiceContext) []service.Service {
+func RpcService(ctx *domain.UseCaseContext) []service.Service {
 	return nil
 }

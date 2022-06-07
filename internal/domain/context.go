@@ -6,29 +6,29 @@ import (
 	"sync"
 )
 
-type ServiceContext struct {
+type UseCaseContext struct {
 	Config    conf.Config
 	Signal    context.Context
 	cancel    context.CancelFunc
 	WaitGroup sync.WaitGroup
 }
 
-func (ctx *ServiceContext) Watch() {
+func (ctx *UseCaseContext) Watch() {
 	ctx.WaitGroup.Add(1)
 }
 
-func (ctx *ServiceContext) Close() {
+func (ctx *UseCaseContext) Close() {
 	if ctx.cancel != nil {
 		ctx.cancel()
 	}
 	ctx.WaitGroup.Wait()
 }
 
-var dsc *ServiceContext
+var dsc *UseCaseContext
 
-func NewServiceContext(c conf.Config) *ServiceContext {
+func NewUseCaseContext(c conf.Config) *UseCaseContext {
 	if dsc == nil {
-		dsc = &ServiceContext{
+		dsc = &UseCaseContext{
 			Config: c,
 		}
 
