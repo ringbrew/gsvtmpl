@@ -2,9 +2,6 @@ package main
 
 import (
 	"context"
-	"{{$.projectName}}/conf"
-	"{{$.projectName}}/internal/delivery"
-	"{{$.projectName}}/internal/domain"
 	"flag"
 	"github.com/ringbrew/gsv-contrib/logger/zaplogger"
 	"github.com/ringbrew/gsv/logger"
@@ -13,6 +10,9 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+	"{{$.projectName}}/conf"
+	"{{$.projectName}}/internal/delivery"
+	"{{$.projectName}}/internal/domain"
 )
 
 func main() {
@@ -33,7 +33,6 @@ func main() {
 		Endpoint: c.Trace.Endpoint,
 		Exporter: c.Trace.Type,
 		Sampler:  1,
-		Debug:    true,
 	}); err != nil {
 		log.Fatal(err.Error())
 	}
