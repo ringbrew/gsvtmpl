@@ -6,6 +6,9 @@ import (
 	"{{$.projectName}}/internal/delivery"
 	"{{$.projectName}}/internal/domain"
 	"flag"
+	"github.com/ringbrew/gsv-contrib/logger/zaplogger"
+	"github.com/ringbrew/gsv/logger"
+	"github.com/ringbrew/gsv/tracex"
 	"log"
 	"os"
 	"os/signal"
@@ -25,9 +28,19 @@ func main() {
 		log.Fatal(err.Error())
 	}
 
+	logger.SetLogger(zaplogger.New())
+	if err := tracex.Init(tracex.Option{
+		Endpoint: c.Trace.Endpoint,
+		Exporter: c.Trace.Type,
+		Sampler:  1,
+		Debug:    true,
+	}); err != nil {
+		log.Fatal(err.Error())
+	}
+
 	// 初始化server
 	ucc := domain.NewUseCaseContext(c)
-	s := delivery.NewRpcServer(ucc)
+	s := delivery.NewServer(ucc)
 	svcImpl := delivery.ServiceList(ucc)
 
 	// 注册服务实现
