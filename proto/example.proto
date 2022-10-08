@@ -3,16 +3,6 @@ package example;
 
 option go_package = "{{$.projectName}}/export/example";
 
-import "google/api/annotations.proto";
-import "protoc-gen-openapiv2/options/annotations.proto";
-
-option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
-	info: {
-		title: "example service";
-        version: "1.1";
-    };
-};
-
 message Example{
     int64 id = 1;
     string name = 2;
@@ -40,29 +30,11 @@ message OpResp{
 }
 
 service ExampleService{
-    rpc GetExample(GetExampleReq) returns (GetExampleResp){
-        option (google.api.http) = {
-            get: "/example.Service/example"
-        };
-    };
+    rpc GetExample(GetExampleReq) returns (GetExampleResp){};
 
-    rpc CreateExample(Example) returns (OpResp){
-        option (google.api.http) = {
-            post: "/example.Service/example"
-            body: "*"
-        };
-    };
+    rpc CreateExample(Example) returns (OpResp){};
 
-    rpc UpdateExample(Example) returns (OpResp){
-        option (google.api.http) = {
-            put: "/example.Service/example"
-            body: "*"
-        };
-    };
+    rpc UpdateExample(Example) returns (OpResp){};
 
-    rpc DeleteExample(DelExampleReq) returns (OpResp){
-        option (google.api.http) = {
-            delete: "/example.Service/example"
-        };
-    };
+    rpc DeleteExample(DelExampleReq) returns (OpResp){};
 }
