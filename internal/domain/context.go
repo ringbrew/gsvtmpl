@@ -2,7 +2,7 @@ package domain
 
 import (
 	"context"
-	"{{$.projectName}}/conf"
+	"{{$.projectName}}/internal/conf"
 	"sync"
 )
 

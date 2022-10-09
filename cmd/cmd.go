@@ -10,7 +10,7 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
-	"{{$.projectName}}/conf"
+	"{{$.projectName}}/internal/conf"
 	"{{$.projectName}}/internal/delivery"
 	"{{$.projectName}}/internal/domain"
 )
