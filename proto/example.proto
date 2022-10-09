@@ -29,7 +29,7 @@ message OpResp{
     string msg = 2;
 }
 
-service ExampleService{
+service Service{
     rpc GetExample(GetExampleReq) returns (GetExampleResp){};
 
     rpc CreateExample(Example) returns (OpResp){};
