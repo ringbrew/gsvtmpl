@@ -9,6 +9,8 @@ import (
 func NewServer(ctx *domain.UseCaseContext) server.Server {
 	opt := server.Classic()
 	// set the server port
+	opt.Name = "ringbrew-example-svc"
+	opt.Host = ctx.Config.Host
 	opt.Port = ctx.Config.Port.Rpc
 	opt.ProxyPort = ctx.Config.Port.Proxy
 
