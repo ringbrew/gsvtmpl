@@ -4,24 +4,25 @@ package example;
 option go_package = "{{$.projectName}}/export/example";
 
 message Example{
-    int64 id = 1;
-    string name = 2;
-    int64 age = 3;
-    string gender = 4;
+    string id = 1;// @gotags: remark:"id"
+    string createTime = 2;// @gotags: remark:"创建时间"
+    string updateTime = 3;// @gotags: remark:"更新时间"
 }
 
-message GetExampleReq{
-    string name = 1;
+message ExampleById{
+    string id = 1;
 }
 
-message GetExampleResp{
-    int64 code = 1;
-    string msg = 2;
-    Example data = 3;
+message QueryRequest{
+    int64 skip = 1;
+    int64 limit = 2;
+    repeated string sort = 3;
+    string word = 4;
 }
 
-message DelExampleReq{
-    string name = 1;
+message QueryResponse{
+    int64 total = 1;
+    repeated Example data = 2;
 }
 
 message OpResp{
@@ -30,11 +31,13 @@ message OpResp{
 }
 
 service Service{
-    rpc GetExample(GetExampleReq) returns (GetExampleResp){};
+    rpc Get(ExampleById) returns (Example){};
 
-    rpc CreateExample(Example) returns (OpResp){};
+    rpc Create(Example) returns (OpResp){};
 
-    rpc UpdateExample(Example) returns (OpResp){};
+    rpc Update(Example) returns (OpResp){};
 
-    rpc DeleteExample(DelExampleReq) returns (OpResp){};
+    rpc Delete(ExampleById) returns (OpResp){};
+
+    rpc Query(QueryRequest) returns (QueryResponse){};
 }

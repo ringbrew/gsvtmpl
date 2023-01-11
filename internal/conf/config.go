@@ -7,6 +7,7 @@ import (
 type Config struct {
 	Env   string `yaml:"environment"`
 	Debug bool   `yaml:"debug"`
+	Host  string `yaml:"host"`
 	Port  Port   `yaml:"port"`
 	Mysql Mysql  `yaml:"mysql"`
 	Redis Redis  `yaml:"redis"`
