@@ -482,7 +482,7 @@ package auth
 import (
 	"net/http"
 
-    "github.com/ringbrew/gsv/server"
+	"github.com/ringbrew/gsv/server"
 	"{{moduleName}}/internal/domain"
 )
 
